@@ -56,7 +56,11 @@ public class Fast5NamesCmd {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			if (reader != null)	reader.close();
+			
+		}finally {
+			if (reader != null)	
+				reader.close();
+	        
 		}
 
 

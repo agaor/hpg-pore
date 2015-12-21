@@ -68,12 +68,20 @@ public class StatsCmd {
 		} else if (inFile.isFile()) {
 			processLocalFile(inFile, statsMap);
 		}
-
+		
+		long start, stop;
+		// post-processing
+		start = System.currentTimeMillis();
+		
 		// print results and charts
 		printResults(statsMap, out);
 		// Draw the grafics
 		drawResults(statsMap,out);
 		
+		stop =System.currentTimeMillis();
+		
+		System.out.println("El tiempo del post-processing ha sido "+ (stop-start) +"milisegundos");
+	
 	}
 
 	//-----------------------------------------------------------------------//
@@ -185,8 +193,10 @@ public class StatsCmd {
 			System.out.println("Error: Running map-reduce job!");
 			System.exit(-1);			
 		}
-
+		
+		long start, stop;
 		// post-processing
+		start = System.currentTimeMillis();
 		Path outFile = new Path(outHdfsDirname + "/part-r-00000");
 		System.out.println("out file = " + outFile.getName());
 
@@ -199,6 +209,9 @@ public class StatsCmd {
 			Utils.parseStatsFile(outRawFileName, out);
 		}
 		fs.delete(new Path(outHdfsDirname), true);		
+		stop =System.currentTimeMillis();
+		
+		System.out.println("El tiempo del post-processing ha sido "+ (stop-start) +"milisegundos");
 	}
 
 	//-----------------------------------------------------------------------//

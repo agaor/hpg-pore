@@ -70,6 +70,7 @@ public class HadoopFastaCmd extends Configured implements Tool {
 				content.append(line.getBytes(), 0, line.length());
 
 				multipleOutputs.write(NullWritable.get(), content, name);
+				multipleOutputs.close();
 			}
 		}
 	}
