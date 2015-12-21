@@ -86,7 +86,7 @@ public class HadoopFastqCmd extends Configured implements Tool {
 				//content.append(brLine, 0, 1);
 
 				multipleOutputs.write(NullWritable.get(), content, name);
-				multipleOutputs.close();
+				
 			}
 		}
 	}
